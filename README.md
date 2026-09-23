@@ -2,6 +2,15 @@
 
 [German-ish for *everything-fitter*]
 
+**Local setup:**
+
+```bash
+python -m pip install -e .
+export ALLESFITTER_PATH=/path/to/allesfitter
+```
+
+`ALLESFITTER_PATH` identifies the repository root. Keep runtime inputs in `data/` and generated outputs in `visuals/`; both directories are ignored by Git.
+
 *allesfitter* (Günther & Daylan, in prep.) is a public and user-friendly astronomy software package for modeling photometric and RV data. It can accommodate multiple exoplanets, multi-star systems, star spots, stellar flares, and various noise models. A graphical user interface allows to define all input. Then, *allesfitter* automatically runs a nested sampling or MCMC fit, and produces ascii tables, latex tables, and plots. For all this, *allesfitter* constructs an inference framework that unites the versatile packages *ellc* (light curve and RV models; Maxted 2016), *aflare* (flare model; Davenport et al. 2014), *dynesty* (static and dynamic nested sampling; https://github.com/joshspeagle/dynesty), *emcee* (Markov Chain Monte Carlo sampling; Foreman-Mackey et al. 2013) and *celerite* (Gaussian Process models; Foreman-Mackey et al. 2017). 
 If you use *allesfitter* or parts of it in your work, please cite and acknowledge all software as detailed below.
 
