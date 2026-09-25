@@ -16,6 +16,8 @@ Web: www.mnguenther.com
 
 from __future__ import print_function, division, absolute_import
 
+from importlib import import_module
+
 #::: plotting settings
 import seaborn as sns
 sns.set(context='paper', style='ticks', palette='deep', font='sans-serif', font_scale=1.5, color_codes=True)
@@ -25,4 +27,13 @@ sns.set_context(rc={'lines.markeredgewidth': 1})
 from .index_transits import index_transits, index_eclipses, get_first_epoch
 from .lightcurve_tools import phase_fold, rebin_err
 from .expand_flags import expand_flags
-from .gp_decor import gp_decor
+
+
+def __getattr__(name):
+	"""Load the optional Gaussian-process helper only when requested."""
+
+	if name != 'gp_decor':
+		raise AttributeError("module 'allesfitter.exoworlds_rdx.lightcurves' has no attribute %r" % name)
+	value = import_module('.gp_decor', __name__).gp_decor
+	globals()[name] = value
+	return value
